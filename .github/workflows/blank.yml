@@ -2,7 +2,7 @@ name: Daily SBB Data Fetch
 
 on:
   schedule:
-    - cron: "22 * * *" # täglich um 4:00 UTC
+    - cron: "30 22 * * *" # täglich um 4:00 UTC
   workflow_dispatch:
 
 jobs:

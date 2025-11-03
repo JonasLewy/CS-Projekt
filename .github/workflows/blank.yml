@@ -2,7 +2,7 @@ name: Daily SBB Data Fetch
 
 on:
   schedule:
-    - cron: "*/5 * * * *" # jeden Tag 23:30 Zürich Zeit
+    - cron: "30 22 * * *" # jeden Tag 23:30 Zürich Zeit
   workflow_dispatch:
 
 jobs:

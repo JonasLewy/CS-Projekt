@@ -2,7 +2,7 @@ name: Daily SBB Data Fetch
 
 on:
   schedule:
-    - cron: "30 22 * * *" # täglich um 4:00 UTC
+    - cron: "30 22 * * *" # jeden Tag 23:30 Zürich Zeit
   workflow_dispatch:
 
 jobs:
@@ -15,9 +15,9 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: |
-          echo "📡 Calling Supabase Function fetch_sbb_data..."
+          echo "📡 Calling Supabase Function super-handler..."
           curl -i \
-            -X POST "$SUPABASE_URL/functions/v1/fetch_sbb_data" \
+            -X POST "$SUPABASE_URL/functions/v1/super-handler" \
             -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY" \
             -H "Content-Type: application/json" \
             -d '{}'

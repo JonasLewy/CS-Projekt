@@ -1,0 +1,23 @@
+name: Daily SBB Data Fetch
+
+on:
+  schedule:
+    - cron: "22 * * *" # täglich um 4:00 UTC
+  workflow_dispatch:
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Call Supabase Edge Function
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          echo "📡 Calling Supabase Function fetch_sbb_data..."
+          curl -i \
+            -X POST "$SUPABASE_URL/functions/v1/fetch_sbb_data" \
+            -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{}'
